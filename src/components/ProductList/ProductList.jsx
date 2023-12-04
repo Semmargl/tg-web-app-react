@@ -25,7 +25,7 @@ const getTotalPrice = (items = []) => {
 
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
-    const [payUrl, setPayUrl] = useState([]);
+    const [payUrl, setPayUrl] = useState('');
     const {tg, queryId} = useTelegram();
     const navigate = useNavigate();
 
@@ -55,13 +55,15 @@ const ProductList = () => {
     }, [addedItems])
     
     const redirect = () => {
-        navigate(payUrl)
+        tg.redirect(payUrl)
     }
 
     useEffect(() => {
-        tg.onEvent('mainButtonClicked', redirect)
+        if(payUrl) {
+            tg.onEvent('mainButtonClicked', redirect)
+        }
         return () => {
-            tg.offEvent('mainButtonClicked', onSendData)
+            tg.offEvent('mainButtonClicked', redirect)
         }
     }, [payUrl])
 
