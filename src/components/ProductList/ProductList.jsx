@@ -7,13 +7,22 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { availableProducts, products } from './ProductList.cons';
 
-
-const productsWeed = availableProducts.map((product) => {
-    return product.available.map((el)=> ({
-        ...el,
-        ...products.find(({id})=> id === product.productId),
-    }))
+const productsWeed = products.map((product) => {
+    return {
+        ...product,
+        available: getProductAvailable(product.id)
+    }
 })
+
+const getProductAvailable = ({id}) => {
+    return availableProducts.find(({productId}) => {productId === id})?.available
+}
+// const productsWeed = availableProducts.map((product) => {
+//     return product.available.map((el)=> ({
+//         ...el,
+//         ...products.find(({id})=> id === product.productId),
+//     }))
+// })
 // const products = [
 //     {id: '1', title: 'Джинсы', price: 50, description: 'Синего цвета, прямые'},
 //     {id: '2', title: 'Куртка', price: 120, description: 'Зеленого цвета, теплая'},

@@ -2,7 +2,7 @@ export const products = [{
     id: 1, 
     title: 'Girl Scout Cookies', 
     short: 'Творческий хай с ароматом сладкого печенья',
-    details: `
+    description: `
         Индор (Indoor)
         ТГК: до 20%
         Сатива 40% / Индика 60%
@@ -14,7 +14,7 @@ export const products = [{
     id: 2, 
     title: 'Mexican Airlines', 
     short: 'Сативный полет с цитрусовым оттенком',
-    details: `
+    description: `
         Индор (Indoor)
         ТГК: до 19%
         Сатива 65% / Индика 35%
@@ -26,7 +26,7 @@ export const products = [{
     id: 3, 
     title: 'White Widow', 
     short: 'Олдскульная легенда с гибридным эффектом',
-    details: `
+    description: `
         Индор (Indoor)
         ТГК: до 20%
         Сатива 30% / Индика 70%
@@ -38,7 +38,7 @@ export const products = [{
     id: 4, 
     title: 'Gorilla Glue', 
     short: ' Максимум ТГК с тяжелой эйфорией',
-    details: `
+    description: `
         Индор (Indoor) 
         ТГК: до 24%
         Сатива 65% / Индика 35%

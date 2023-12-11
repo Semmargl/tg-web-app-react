@@ -10,11 +10,19 @@ const ProductItem = ({product, className, onAdd}) => {
 
     return (
         <div className={'product ' + className}>
-            <div className={'img'}/>
+            <img src={product.img} className={'img'}/>
             <div className={'title'}>{product.title}</div>
+            <div className={'description'}>{product.short}</div>
             <div className={'description'}>{product.description}</div>
             <div className={'price'}>
-                <span>Стоимость: <b>{product.price}</b></span>
+                {
+                    product.available.map( ()=>( <>
+                        <span>locationId: <b>{product.locationId}</b></span>
+                        <span>price: <b>{product.price}</b></span>
+                        <span>weight: <b>{product.weight}</b></span>
+                    </> ) )
+                }
+                
             </div>
             <Button className={'add-btn'} onClick={onAddHandler}>
                 Добавить в корзину
