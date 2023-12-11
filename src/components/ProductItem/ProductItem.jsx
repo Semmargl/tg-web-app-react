@@ -16,11 +16,12 @@ const ProductItem = ({product, className, onAdd}) => {
             <div className={'description'}>{product.description}</div>
             <div className={'price'}>
                 {
-                    product.available.map( ()=>( <>
-                        <span>locationId: <b>{product.locationId}</b></span>
-                        <span>price: <b>{product.price}</b></span>
-                        <span>weight: <b>{product.weight}</b></span>
-                    </> ) )
+                    product.available?.map( (avOption)=>( <div key={product.id}>
+                        <p>locationId: <b>{avOption.locationId}</b></p>
+                        <p>price: <b>{avOption.price}</b></p>
+                        <p>weight: <b>{avOption.weight}</b></p>
+                        <ln></ln>
+                    </div> ) )
                 }
                 
             </div>

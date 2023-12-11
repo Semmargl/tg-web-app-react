@@ -7,16 +7,19 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { availableProducts, products } from './ProductList.cons';
 
+
+const getProductAvailable = ({id}) => {
+    return availableProducts.find(({productId}) => productId === id )?.available
+}
+
 const productsWeed = products.map((product) => {
     return {
         ...product,
-        available: getProductAvailable(product.id)
+        available: getProductAvailable(product)
     }
 })
 
-const getProductAvailable = ({id}) => {
-    return availableProducts.find(({productId}) => {productId === id})?.available
-}
+
 // const productsWeed = availableProducts.map((product) => {
 //     return product.available.map((el)=> ({
 //         ...el,
