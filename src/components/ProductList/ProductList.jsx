@@ -5,17 +5,25 @@ import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { availableProducts, products } from './ProductList.cons';
 
-const products = [
-    {id: '1', title: 'Джинсы', price: 50, description: 'Синего цвета, прямые'},
-    {id: '2', title: 'Куртка', price: 120, description: 'Зеленого цвета, теплая'},
-    {id: '3', title: 'Джинсы 2', price: 50, description: 'Синего цвета, прямые'},
-    {id: '4', title: 'Куртка 8', price: 122, description: 'Зеленого цвета, теплая'},
-    {id: '5', title: 'Джинсы 3', price: 50, description: 'Синего цвета, прямые'},
-    {id: '6', title: 'Куртка 7', price: 60, description: 'Зеленого цвета, теплая'},
-    {id: '7', title: 'Джинсы 4', price: 55, description: 'Синего цвета, прямые'},
-    {id: '8', title: 'Куртка 5', price: 12, description: 'Зеленого цвета, теплая'},
-]
+
+const productsWeed = availableProducts.map((product) => {
+    return product.available.map((el)=> ({
+        ...el,
+        ...products.find(({id})=> id === product.productId),
+    }))
+})
+// const products = [
+//     {id: '1', title: 'Джинсы', price: 50, description: 'Синего цвета, прямые'},
+//     {id: '2', title: 'Куртка', price: 120, description: 'Зеленого цвета, теплая'},
+//     {id: '3', title: 'Джинсы 2', price: 50, description: 'Синего цвета, прямые'},
+//     {id: '4', title: 'Куртка 8', price: 122, description: 'Зеленого цвета, теплая'},
+//     {id: '5', title: 'Джинсы 3', price: 50, description: 'Синего цвета, прямые'},
+//     {id: '6', title: 'Куртка 7', price: 60, description: 'Зеленого цвета, теплая'},
+//     {id: '7', title: 'Джинсы 4', price: 55, description: 'Синего цвета, прямые'},
+//     {id: '8', title: 'Куртка 5', price: 12, description: 'Зеленого цвета, теплая'},
+// ]
 
 const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {
@@ -98,7 +106,7 @@ const ProductList = () => {
 
     return (
         <div className={'list'}>
-            {products.map(item => (
+            {productsWeed.map(item => (
                 <ProductItem
                     product={item}
                     onAdd={onAdd}
