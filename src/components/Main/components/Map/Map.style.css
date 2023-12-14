@@ -1,0 +1,22 @@
+.Map {
+   position: relative;
+}
+
+.Map .district {
+    cursor: pointer;
+    fill: #fafafa;
+    stroke: black;
+    z-index: 1;
+}
+
+.Map .district:hover { 
+    fill: #d5f1ff;
+    z-index: 2;
+    stroke: rgb(12, 126, 255);
+    
+}
+
+.Map .district.district_active { 
+    fill: #ffffff;
+    stroke: black;
+}

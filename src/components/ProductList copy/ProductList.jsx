@@ -6,7 +6,6 @@ import {useCallback, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { availableProducts, products } from './ProductList.cons';
-import { Carousel } from 'antd';
 
 
 const getProductAvailable = ({id}) => {
@@ -119,15 +118,13 @@ const ProductList = () => {
 
     return (
         <div className={'list'}>
-            <Carousel swipeToSlide draggable>
-                {productsWeed.map(item => (
-                    <ProductItem
-                        product={item}
-                        onAdd={onAdd}
-                        className={'item'}
-                    />
-                ))}
-            </Carousel>
+            {productsWeed.map(item => (
+                <ProductItem
+                    product={item}
+                    onAdd={onAdd}
+                    className={'item'}
+                />
+            ))}
             <div>
                 {payUrl && <div>
                     <a href={payUrl}>{payUrl}</a>
