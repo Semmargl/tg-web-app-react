@@ -7,36 +7,21 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { availableProducts, products } from './ProductList.cons';
 import { Carousel } from 'antd';
+import { GiMushroomGills } from "react-icons/gi";
+import { FaCannabis } from "react-icons/fa";
 
 
 const getProductAvailable = ({id}) => {
     return availableProducts.find(({productId}) => productId === id )?.available
 }
 
-const productsWeed = products.map((product) => {
-    return {
-        ...product,
-        available: getProductAvailable(product)
-    }
-})
-
-
-// const productsWeed = availableProducts.map((product) => {
-//     return product.available.map((el)=> ({
-//         ...el,
-//         ...products.find(({id})=> id === product.productId),
-//     }))
+// const productsItemArr = products.map((product) => {
+//     return {
+//         ...product,
+//         available: getProductAvailable(product)
+//     }
 // })
-// const products = [
-//     {id: '1', title: 'Джинсы', price: 50, description: 'Синего цвета, прямые'},
-//     {id: '2', title: 'Куртка', price: 120, description: 'Зеленого цвета, теплая'},
-//     {id: '3', title: 'Джинсы 2', price: 50, description: 'Синего цвета, прямые'},
-//     {id: '4', title: 'Куртка 8', price: 122, description: 'Зеленого цвета, теплая'},
-//     {id: '5', title: 'Джинсы 3', price: 50, description: 'Синего цвета, прямые'},
-//     {id: '6', title: 'Куртка 7', price: 60, description: 'Зеленого цвета, теплая'},
-//     {id: '7', title: 'Джинсы 4', price: 55, description: 'Синего цвета, прямые'},
-//     {id: '8', title: 'Куртка 5', price: 12, description: 'Зеленого цвета, теплая'},
-// ]
+
 
 const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {
@@ -44,12 +29,39 @@ const getTotalPrice = (items = []) => {
     }, 0)
 }
 
-const ProductList = () => {
+const ProductList = ({products, productType, availableProducts}) => {
     const [addedItems, setAddedItems] = useState([]);
     const [payUrl, setPayUrl] = useState('');
     const {tg, queryId} = useTelegram();
     const navigate = useNavigate();
+    
+    const allProductIds = products.map(product => product.id);
 
+    const isProductAvailable = (productId) => {
+        return availableProducts.some(product => product.productId === productId);
+        
+    };
+
+
+
+    const productIcons = allProductIds.map(productId => (
+        <div 
+            key={productId} 
+            className={`icon_product_qrt ${isProductAvailable(productId) ? 'available' : 'icon_product_qrt_wrap_unavailable'}`}
+        >
+            {productType === 'weed' ? <FaCannabis /> : <GiMushroomGills />}
+        </div>
+    ));
+
+    const productsItemArr = products.map((product) => {
+        return {
+            ...product,
+            available: getProductAvailable(product)
+        }
+    })
+
+
+    // console.log('products', products);
     const onSendData = useCallback(() => {
 
         const api_key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1dWlkIjoiTVRjME5EST0iLCJ0eXBlIjoicHJvamVjdCIsInYiOiI5ZGY0ZThkYmY0OTljN2RhOTcxZjIxMTBmYWFlM2I0ZjNjMTQwMmJhNDQ1OTQ3ODU3NDZjYThlYTE5OTdmZjcxIiwiZXhwIjo4ODEwMTYxMTk1NX0.J2Y7RsQC-M0jGnsgoDvLu_ndn8dzoR3EuNl_MD9RS44';
@@ -119,8 +131,18 @@ const ProductList = () => {
 
     return (
         <div className={'list'}>
+            <div className='icon_product_qrt_wrap'>
+                {/* {products.map((item, idx) => (
+                    <div className='icon_product_qrt' key={idx} >
+                        {productType === 'weed' ? <FaCannabis /> : <GiMushroomGills />}
+                    </div>
+                ))} */}
+                            <div className='icon_product_qrt_wrap'>
+                {productIcons}
+            </div>
+            </div>
             <Carousel swipeToSlide draggable>
-                {productsWeed.map(item => (
+                {productsItemArr.map(item => (
                     <ProductItem
                         product={item}
                         onAdd={onAdd}

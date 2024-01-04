@@ -8,3 +8,52 @@
     /* margin-right: 10px;
     margin-bottom: 10px; */
 }
+
+.tabs{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+    padding-bottom: 10px;
+
+}
+
+.tabs button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1677ff;
+    border: 1px solid #1677ff;;
+    transition: all 0.3s ease-in-out;
+}
+
+.tabs button:hover {
+    border: 1px solid #fff;
+}
+.tabs button:hover .tabs_icon{
+    color: #fff;
+}
+
+.tabs .active{
+    background: transparent;
+    border: 1px solid #6408bb;
+
+}
+
+
+
+.tabs_icon{
+    /* display: flex;
+    justify-content: flex-start; */
+    color: #fff;
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.tabs .active .tabs_icon{
+    color: #6408bb;
+}
+/* .tabs_icon:hover{
+    color: #fff;
+} */

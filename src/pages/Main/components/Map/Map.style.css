@@ -20,3 +20,9 @@
     fill: #ffffff;
     stroke: black;
 }
+
+.Map .selected {
+    fill: #fcabab;
+    /* stroke: black; */
+    stroke: red;
+}
