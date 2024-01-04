@@ -34,8 +34,6 @@ const Main = () => {
                         <div className='filter_by_category'>
                             {/* <p>weed | mushroom</p> */}
                             <div className='tabs'>
-                                {/* <p className={activeTab === 'weed' ? 'active' : ''} onClick={() => handleTabClick('weed')}>weed</p> */}
-                                {/* <p className={activeTab === 'mushroom' ? 'active' : ''} onClick={() => handleTabClick('mushroom')}>mushroom</p> */}
                                 <Button className={activeTab === 'weed' ? 'active' : ''} type="primary" icon={<FaCannabis className='tabs_icon' />}  onClick={() => handleTabClick('weed')}/>
                                 <Button className={activeTab === 'mushroom' ? 'active' : ''} type="primary" icon={<GiMushroomGills className='tabs_icon' />}  onClick={() => handleTabClick('mushroom')}/>
                             </div>

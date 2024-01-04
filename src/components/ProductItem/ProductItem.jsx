@@ -18,7 +18,6 @@ const ProductItem = ({ product, className, onAdd }) => {
         console.log('product.img', avOption);
     }
 
-    // product_price_item_active
     return (
         <div
             className={'product ' + className}
