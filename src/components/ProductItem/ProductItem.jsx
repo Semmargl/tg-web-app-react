@@ -1,22 +1,96 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 // import Button from "../Button/Button";
 import './ProductItem.css';
 // import 'antd/dist/antd.css';
 import { Button } from 'antd';
 
-const ProductItem = ({ product, className, onAdd }) => {
+const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedDistrict, availableProducts }) => {
     const [currentWeight, setCurrentWeight] = useState(null)
+    // const [availableOptions, setAvailableOptions] = useState(null)
+    const availableOptions = product.available?.filter(avOption => avOption.locationId === selectedDistrict);
+    const [heightTop, setHeightTop] = useState(200);
+    const [heightBottom, setHeightBottom] = useState(200);
+    const refTop = useRef(null);
+    const refBottom = useRef(null);
+
 
     const onAddHandler = () => {
         onAdd(product);
     }
 
+
+    const getRandomAvailableLocation = (productId, weight) => {
+        const availableLocations = availableProducts
+            .filter(product => product.productId === productId)
+            .flatMap(product => product.available)
+            .filter(option => option.weight === weight);
+
+        return availableLocations.length > 0
+            ? availableLocations[Math.floor(Math.random() * availableLocations.length)].locationId
+            : null;
+    };
+
     console.log('currentWeight', currentWeight);
 
+    const isWeightAvailable = (avOption) => {
+        return availableOptions.some(option =>
+            option.weight === avOption.weight &&
+            option.locationId === avOption.locationId
+        );
+    };
+
+
     const chooseWeightHandler = (avOption) => {
-        setCurrentWeight(avOption)
-        console.log('product.img', avOption);
-    }
+        if (isWeightAvailable(avOption)) {
+            setCurrentWeight(avOption);
+        } else {
+            const randomLocationId = getRandomAvailableLocation(product.id, avOption.weight);
+            if (randomLocationId) {
+                setSelectedDistrict(randomLocationId);
+                setCurrentWeight({ ...avOption, locationId: randomLocationId });
+            }
+        }
+    };
+
+
+    const handleDragTop = useCallback((e) => {
+        e.preventDefault();
+        const startY = e.clientY;
+        const startHeight = heightTop;
+
+        const handleMouseMove = (moveEvent) => {
+            const delta = startY - moveEvent.clientY;
+            setHeightTop(Math.max(30, startHeight - delta)); 
+        };
+
+        const handleMouseUp = () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+    }, [heightTop]);
+
+    const handleDragBottom = useCallback((e) => {
+        e.preventDefault();
+        const startY = e.clientY;
+        const startHeight = heightBottom;
+
+        const handleMouseMove = (moveEvent) => {
+            const delta = moveEvent.clientY - startY;
+            setHeightBottom(Math.max(30, startHeight - delta)); 
+        };
+
+        const handleMouseUp = () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+    }, [heightBottom]);
+
 
     return (
         <div
@@ -36,7 +110,8 @@ const ProductItem = ({ product, className, onAdd }) => {
                                 product.available?.map((avOption) => (
                                     <div
                                         key={product.id}
-                                        className={`product_price_item ${avOption.weight === currentWeight?.weight && avOption.locationId === currentWeight?.locationId ? 'product_price_item_active' : ''}`}
+                                        // className={`product_price_item ${avOption.weight === currentWeight?.weight && avOption.locationId === currentWeight?.locationId ? 'product_price_item_active' : ''}`}
+                                        className={`product_price_item ${isWeightAvailable(avOption) ? (avOption.weight === currentWeight?.weight && avOption.locationId === currentWeight?.locationId ? 'product_price_item_active' : '') : 'product_price_item_unavailable'}`}
                                         onClick={() => chooseWeightHandler(avOption)}
                                     >
                                         {/* <p>locationId: <b>{avOption.locationId}</b></p> */}
@@ -48,11 +123,41 @@ const ProductItem = ({ product, className, onAdd }) => {
 
                         </div>
                     </div>
+                    <div className={'product_pay_wrap'}>
+                        <div className={'product_pay_item'}>
+                            <button className={'product_pay_var'} >Google Pay</button>
+                        </div>
+                        <div className={'product_pay_item'}>
+                            <button className={'product_pay_var'}>Telegram Wallet</button>
+                            <button className={'product_pay_pacifier'}> <img src="/icon/pacifier.png" alt="" /> </button>
+                        </div>
+                        <div className={'product_pay_item'}>
+                            <button className={'product_pay_var'}>Bitcoin</button>
+                            <button className={'product_pay_pacifier'}> <img src="/icon/pacifier.png" alt="" /> </button>
+                        </div>
+                    </div>
                 </div>
                 <div className='right_block_component'>
-                    <div className={'description'}>{product.short}</div>
-                    <div className={'description'}>{product.description}</div>
-                    
+                    <div
+                        className={'description description_top'}
+                        style={{ height: `${heightTop}px` }}
+                    >
+                        {product.short}
+                        <div
+                            className="resize-handle-top"
+                            onMouseDown={handleDragTop}
+                        ><span></span></div>
+                    </div>
+                    <div
+                        className={'description description_bottom'}
+                        style={{ height: `${heightBottom}px` }}
+                    >
+                        <div
+                            className="resize-handle-bottom"
+                            onMouseDown={handleDragBottom}
+                        ><span></span></div>
+                        {product.description}
+                    </div>
                 </div>
             </div>
 

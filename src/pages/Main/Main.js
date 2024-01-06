@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Carousel } from 'antd';
 import {products, availableProducts} from '../../components/ProductList/ProductList.cons'
 import {productsMushrooms, availableProductsMushrooms } from '../../components/ProductList/ProductsListMushrooms.cons'
@@ -19,7 +19,11 @@ const Main = () => {
         setActiveTab(tab);
     };
 
-    console.log('availableProducts', availableProducts);
+    useEffect(() => {
+        setSelectedDistrict(2)
+    }, [])
+
+    console.log('selectedDistrict', selectedDistrict);
 
     
     return (
@@ -56,6 +60,8 @@ const Main = () => {
                         products={activeTab === 'weed' ? products : productsMushrooms} 
                         productType={activeTab} 
                         availableProducts={activeTab === 'weed' ? availableProducts : availableProductsMushrooms}
+                        selectedDistrict={selectedDistrict}
+                        setSelectedDistrict={setSelectedDistrict}
                         />
                         </div>
                     </div>

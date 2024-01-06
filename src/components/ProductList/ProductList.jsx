@@ -15,13 +15,6 @@ const getProductAvailable = ({ id }) => {
     return availableProducts.find(({ productId }) => productId === id)?.available
 }
 
-// const productsItemArr = products.map((product) => {
-//     return {
-//         ...product,
-//         available: getProductAvailable(product)
-//     }
-// })
-
 
 const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {
@@ -29,7 +22,7 @@ const getTotalPrice = (items = []) => {
     }, 0)
 }
 
-const ProductList = ({ products, productType, availableProducts }) => {
+const ProductList = ({ products, productType, availableProducts, selectedDistrict, setSelectedDistrict }) => {
     const [addedItems, setAddedItems] = useState([]);
     const [payUrl, setPayUrl] = useState('');
     const { tg, queryId } = useTelegram();
@@ -37,9 +30,16 @@ const ProductList = ({ products, productType, availableProducts }) => {
 
     const allProductIds = products.map(product => product.id);
 
-    const isProductAvailable = (productId) => {
-        return availableProducts.some(product => product.productId === productId);
+    // const isProductAvailable = (productId) => {
+    //     return availableProducts.some(product => product.productId === productId);
 
+    // };
+
+    const isProductAvailable = (productId) => {
+        return availableProducts.some(product => 
+            product.productId === productId && 
+            product.available.some(av => av.locationId === selectedDistrict)
+        );
     };
 
 
@@ -47,11 +47,12 @@ const ProductList = ({ products, productType, availableProducts }) => {
     const productIcons = allProductIds.map(productId => (
         <div
             key={productId}
-            className={`icon_product_qrt ${isProductAvailable(productId) ? 'available' : 'icon_product_qrt_wrap_unavailable'}`}
+            className={`icon_product_qrt ${isProductAvailable(productId) ? 'icon_product_qrt_wrap_available' : 'icon_product_qrt_wrap_unavailable'}`}
         >
             {productType === 'weed' ? <FaCannabis /> : <GiMushroomGills />}
         </div>
     ));
+
 
     const productsItemArr = products.map((product) => {
         return {
@@ -61,7 +62,6 @@ const ProductList = ({ products, productType, availableProducts }) => {
     })
 
 
-    // console.log('products', products);
     const onSendData = useCallback(() => {
 
         const api_key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1dWlkIjoiTVRjME5EST0iLCJ0eXBlIjoicHJvamVjdCIsInYiOiI5ZGY0ZThkYmY0OTljN2RhOTcxZjIxMTBmYWFlM2I0ZjNjMTQwMmJhNDQ1OTQ3ODU3NDZjYThlYTE5OTdmZjcxIiwiZXhwIjo4ODEwMTYxMTk1NX0.J2Y7RsQC-M0jGnsgoDvLu_ndn8dzoR3EuNl_MD9RS44';
@@ -129,27 +129,27 @@ const ProductList = ({ products, productType, availableProducts }) => {
         }
     }
 
+    
+
     return (
         <div className={'list'}>
             <div className='icon_product_qrt_wrap'>
-                {/* {products.map((item, idx) => (
-                    <div className='icon_product_qrt' key={idx} >
-                        {productType === 'weed' ? <FaCannabis /> : <GiMushroomGills />}
-                    </div>
-                ))} */}
-                <div className='icon_product_qrt_wrap'>
                     {productIcons}
-                </div>
             </div>
-            <Carousel swipeToSlide draggable>
-                {productsItemArr.map(item => (
-                    <ProductItem
-                        product={item}
-                        onAdd={onAdd}
-                        className={'item'}
-                    />
-                ))}
-            </Carousel>
+            <div className={'product_carousel_wrap'}>
+                <Carousel swipeToSlide draggable>
+                    {productsItemArr.map(item => (
+                        <ProductItem
+                            product={item}
+                            onAdd={onAdd}
+                            className={'item'}
+                            selectedDistrict={selectedDistrict}
+                            setSelectedDistrict={setSelectedDistrict}
+                            availableProducts={availableProducts}
+                        />
+                    ))}
+                </Carousel>
+            </div>
             <div>
                 {payUrl && <div>
                     <a href={payUrl}>{payUrl}</a>
