@@ -51,6 +51,13 @@
     color: #5f5f5f; 
 }
 
+.icon_product_qrt_active-icon{
+    color: rgba(16, 177, 246, 0.90);
+    border: 1px solid rgba(16, 177, 246, 0.90);
+    filter: drop-shadow(0px 0px 4px rgba(16, 177, 246, 0.90));
+}
+
+
 .product_carousel_wrap{
    
 }

@@ -9,14 +9,20 @@ import { FaCannabis } from "react-icons/fa";
 import './Main.css';
 import Map from './components/Map';
 import ProductList from '../../components/ProductList';
+
 // import availableProducts from '../../components/ProductList';
 
 const Main = () => {
     const [activeTab, setActiveTab] = useState('weed');
     const [selectedDistrict, setSelectedDistrict] = useState(null);
+    const [catigories, setCatigories] = useState(['weed', 'mushroom'])
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
+    };
+
+    const handleSlideChange = (currentSlide) => {
+        setActiveTab(catigories[currentSlide]);
     };
 
     useEffect(() => {
@@ -34,22 +40,26 @@ const Main = () => {
                 <div className='context'>
 
                     {/* TODO: Decompose */}
-                    <div className='filters'> 
-                        <div className='filter_by_category'>
-                            {/* <p>weed | mushroom</p> */}
-                            <div className='tabs'>
-                                <Button className={activeTab === 'weed' ? 'active' : ''} type="primary" icon={<FaCannabis className='tabs_icon' />}  onClick={() => handleTabClick('weed')}/>
-                                <Button className={activeTab === 'mushroom' ? 'active' : ''} type="primary" icon={<GiMushroomGills className='tabs_icon' />}  onClick={() => handleTabClick('mushroom')}/>
+                    <Carousel swipeToSlide draggable afterChange={handleSlideChange}>
+                        {catigories.map((item,idx) => (
+                            <div key={idx} className='filters'> 
+                            <div className='filter_by_category'>
+                                {/* <p>weed | mushroom</p> */}
+                                <div className='tabs'>
+                                    <Button className={activeTab === 'weed' ? 'active' : ''} type="primary" icon={<FaCannabis className='tabs_icon' />}  onClick={() => handleTabClick('weed')}/>
+                                    <Button className={activeTab === 'mushroom' ? 'active' : ''} type="primary" icon={<GiMushroomGills className='tabs_icon' />}  onClick={() => handleTabClick('mushroom')}/>
+                                </div>
+                            </div>
+                            <div className='filter_by_location'>
+                                {/* <Map availableProducts={availableProducts}/> */}
+                                <Map
+                                availableProducts={activeTab === 'weed' ? availableProducts : availableProductsMushrooms} 
+                                selectedDistrict={selectedDistrict}
+                                setSelectedDistrict={setSelectedDistrict}/>
                             </div>
                         </div>
-                        <div className='filter_by_location'>
-                            {/* <Map availableProducts={availableProducts}/> */}
-                            <Map
-                            availableProducts={activeTab === 'weed' ? availableProducts : availableProductsMushrooms} 
-                            selectedDistrict={selectedDistrict}
-                            setSelectedDistrict={setSelectedDistrict}/>
-                        </div>
-                    </div>
+                        ))}
+                    </Carousel>
 
                     {/* TODO: Decompose */}
                     <div className='products'>
@@ -67,9 +77,9 @@ const Main = () => {
                     </div>
 
                     {/* TODO: Decompose */}
-                    <div className='payment_methods'>
+                    {/* <div className='payment_methods'>
                         <p>BTC | Cryptoprocesing | MasterCard Visa</p>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>

@@ -8,8 +8,14 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
     const [currentWeight, setCurrentWeight] = useState(null)
     // const [availableOptions, setAvailableOptions] = useState(null)
     const availableOptions = product.available?.filter(avOption => avOption.locationId === selectedDistrict);
-    const [heightTop, setHeightTop] = useState(200);
-    const [heightBottom, setHeightBottom] = useState(200);
+    // const [heightTop, setHeightTop] = useState(200);
+    // const [heightBottom, setHeightBottom] = useState(200);
+    const [heightTop, setHeightTop] = useState(() => {
+        return localStorage.getItem('heightTop') || 200;
+    });
+    const [heightBottom, setHeightBottom] = useState(() => {
+        return localStorage.getItem('heightBottom') || 200;
+    });
     const refTop = useRef(null);
     const refBottom = useRef(null);
 
@@ -17,6 +23,14 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
     const onAddHandler = () => {
         onAdd(product);
     }
+
+    useEffect(() => {
+        localStorage.setItem('heightTop', heightTop);
+    }, [heightTop]);
+
+    useEffect(() => {
+        localStorage.setItem('heightBottom', heightBottom);
+    }, [heightBottom]);
 
 
     const getRandomAvailableLocation = (productId, weight) => {
@@ -60,7 +74,7 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
 
         const handleMouseMove = (moveEvent) => {
             const delta = startY - moveEvent.clientY;
-            setHeightTop(Math.max(30, startHeight - delta)); 
+            setHeightTop(Math.max(50, startHeight - delta)); 
         };
 
         const handleMouseUp = () => {
@@ -79,7 +93,7 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
 
         const handleMouseMove = (moveEvent) => {
             const delta = moveEvent.clientY - startY;
-            setHeightBottom(Math.max(30, startHeight - delta)); 
+            setHeightBottom(Math.max(50, startHeight - delta)); 
         };
 
         const handleMouseUp = () => {

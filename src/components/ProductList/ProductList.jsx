@@ -25,6 +25,7 @@ const getTotalPrice = (items = []) => {
 const ProductList = ({ products, productType, availableProducts, selectedDistrict, setSelectedDistrict }) => {
     const [addedItems, setAddedItems] = useState([]);
     const [payUrl, setPayUrl] = useState('');
+    const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const { tg, queryId } = useTelegram();
     const navigate = useNavigate();
 
@@ -42,12 +43,15 @@ const ProductList = ({ products, productType, availableProducts, selectedDistric
         );
     };
 
+    const handleSlideChange = (currentSlide) => {
+        setActiveSlideIndex(currentSlide);
+    };
 
 
-    const productIcons = allProductIds.map(productId => (
+    const productIcons = allProductIds.map((productId, index) => (
         <div
             key={productId}
-            className={`icon_product_qrt ${isProductAvailable(productId) ? 'icon_product_qrt_wrap_available' : 'icon_product_qrt_wrap_unavailable'}`}
+            className={`icon_product_qrt ${isProductAvailable(productId) ? 'icon_product_qrt_wrap_available' : 'icon_product_qrt_wrap_unavailable'} ${index === activeSlideIndex ? 'icon_product_qrt_active-icon' : ''}`}
         >
             {productType === 'weed' ? <FaCannabis /> : <GiMushroomGills />}
         </div>
@@ -129,7 +133,6 @@ const ProductList = ({ products, productType, availableProducts, selectedDistric
         }
     }
 
-    
 
     return (
         <div className={'list'}>
@@ -137,7 +140,7 @@ const ProductList = ({ products, productType, availableProducts, selectedDistric
                     {productIcons}
             </div>
             <div className={'product_carousel_wrap'}>
-                <Carousel swipeToSlide draggable>
+                <Carousel swipeToSlide draggable afterChange={handleSlideChange}>
                     {productsItemArr.map(item => (
                         <ProductItem
                             product={item}
