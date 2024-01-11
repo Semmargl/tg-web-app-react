@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './ProductList.css';
 import ProductItem from "../ProductItem/ProductItem";
 import { useTelegram } from "../../hooks/useTelegram";
-import { useCallback, useEffect } from "react";
+// import { useCallback, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { availableProducts, products } from './ProductList.cons';
@@ -27,6 +27,8 @@ const ProductList = ({ products, productType, availableProducts, selectedDistric
     const [payUrl, setPayUrl] = useState('');
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const { tg, queryId } = useTelegram();
+    const iconContainerRef = useRef(null);
+    const iconRefs = useRef([]);
     const navigate = useNavigate();
 
     const allProductIds = products.map(product => product.id);
@@ -45,11 +47,37 @@ const ProductList = ({ products, productType, availableProducts, selectedDistric
 
     const handleSlideChange = (currentSlide) => {
         setActiveSlideIndex(currentSlide);
+        centerActiveIcon(currentSlide);
     };
 
+        const centerActiveIcon = (index) => {
+            const iconContainer = iconContainerRef.current;
+            const activeIcon = iconRefs.current[index];
+    
+            if (iconContainer && activeIcon) {
+                const containerWidth = iconContainer.offsetWidth;
+                const activeIconOffset = activeIcon.offsetLeft + activeIcon.offsetWidth / 2;
+                const scrollPosition = activeIconOffset - containerWidth / 2;
+                iconContainer.scrollLeft = scrollPosition;
+            }
+        };
+    
+        const setIconRef = (element, index) => {
+            iconRefs.current[index] = element;
+        };
+    
 
+    // const productIcons = allProductIds.map((productId, index) => (
+    //     <div
+    //         key={productId}
+    //         className={`icon_product_qrt ${isProductAvailable(productId) ? 'icon_product_qrt_wrap_available' : 'icon_product_qrt_wrap_unavailable'} ${index === activeSlideIndex ? 'icon_product_qrt_active-icon' : ''}`}
+    //     >
+    //         {productType === 'weed' ? <FaCannabis /> : <GiMushroomGills />}
+    //     </div>
+    // ));
     const productIcons = allProductIds.map((productId, index) => (
         <div
+            ref={(el) => setIconRef(el, index)}
             key={productId}
             className={`icon_product_qrt ${isProductAvailable(productId) ? 'icon_product_qrt_wrap_available' : 'icon_product_qrt_wrap_unavailable'} ${index === activeSlideIndex ? 'icon_product_qrt_active-icon' : ''}`}
         >
@@ -136,7 +164,7 @@ const ProductList = ({ products, productType, availableProducts, selectedDistric
 
     return (
         <div className={'list'}>
-            <div className='icon_product_qrt_wrap'>
+            <div ref={iconContainerRef} className='icon_product_qrt_wrap'>
                     {productIcons}
             </div>
             <div className={'product_carousel_wrap'}>

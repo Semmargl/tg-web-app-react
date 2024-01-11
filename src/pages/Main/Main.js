@@ -38,28 +38,30 @@ const Main = () => {
             {/* TODO: Decompose */}
             <div className='payment-system'>
                 <div className='context'>
-
-                    {/* TODO: Decompose */}
-                    <Carousel swipeToSlide draggable afterChange={handleSlideChange}>
-                        {catigories.map((item,idx) => (
-                            <div key={idx} className='filters'> 
-                            <div className='filter_by_category'>
-                                {/* <p>weed | mushroom</p> */}
-                                <div className='tabs'>
-                                    <Button className={activeTab === 'weed' ? 'active' : ''} type="primary" icon={<FaCannabis className='tabs_icon' />}  onClick={() => handleTabClick('weed')}/>
-                                    <Button className={activeTab === 'mushroom' ? 'active' : ''} type="primary" icon={<GiMushroomGills className='tabs_icon' />}  onClick={() => handleTabClick('mushroom')}/>
+                    <div className='location_wrap'>
+                        {/* TODO: Decompose */}
+                        <Carousel  swipeToSlide draggable afterChange={handleSlideChange}>
+                            {catigories.map((item,idx) => (
+                                <div key={idx} className='filters'> 
+                                <div className='filter_by_category'>
+                                    {/* <p>weed | mushroom</p> */}
+                                    <div className='tabs'>
+                                        <Button className={activeTab === 'weed' ? 'active' : ''} type="primary" icon={<FaCannabis className='tabs_icon' />}  onClick={() => handleTabClick('weed')}/>
+                                        <Button className={activeTab === 'mushroom' ? 'active' : ''} type="primary" icon={<GiMushroomGills className='tabs_icon' />}  onClick={() => handleTabClick('mushroom')}/>
+                                    </div>
+                                </div>
+                                <div className='filter_by_location'>
+                                    {/* <Map availableProducts={availableProducts}/> */}
+                                    <Map
+                                    availableProducts={activeTab === 'weed' ? availableProducts : availableProductsMushrooms} 
+                                    selectedDistrict={selectedDistrict}
+                                    setSelectedDistrict={setSelectedDistrict}/>
                                 </div>
                             </div>
-                            <div className='filter_by_location'>
-                                {/* <Map availableProducts={availableProducts}/> */}
-                                <Map
-                                availableProducts={activeTab === 'weed' ? availableProducts : availableProductsMushrooms} 
-                                selectedDistrict={selectedDistrict}
-                                setSelectedDistrict={setSelectedDistrict}/>
-                            </div>
-                        </div>
-                        ))}
-                    </Carousel>
+                            ))}
+                        </Carousel>
+                    </div>
+
 
                     {/* TODO: Decompose */}
                     <div className='products'>

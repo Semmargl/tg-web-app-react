@@ -1,5 +1,18 @@
 .Map {
-   position: relative;
+    position: relative;
+    /* width: 100%;
+    max-width: 216.2px;
+    height: 210px; */
+    max-width: 100vw;
+    width: 100%;
+    height: 80%;
+    border: 1px solid #000;
+}
+
+.Map svg {
+    width: 100%;
+    height: 90%;
+    max-height: 230px;
 }
 
 .Map .district {
@@ -17,12 +30,15 @@
 }
 
 .Map .district.district_active { 
-    fill: #ffffff;
-    stroke: black;
+    fill: #419FD9;
+    border: 1px solid #000;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    filter: drop-shadow(0px 0px 4px #10B1F6);
 }
 
 .Map .selected {
-    fill: #fcabab;
-    /* stroke: black; */
-    stroke: red;
+    fill: #419FD9;
+    border: 1px solid #000;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    filter: drop-shadow(0px 0px 4px #10B1F6);
 }

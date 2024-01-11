@@ -10,11 +10,13 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
     const availableOptions = product.available?.filter(avOption => avOption.locationId === selectedDistrict);
     // const [heightTop, setHeightTop] = useState(200);
     // const [heightBottom, setHeightBottom] = useState(200);
+    // const [heightTop, setHeightTop] = useState(35);
+    // const [heightBottom, setHeightBottom] = useState(40);
     const [heightTop, setHeightTop] = useState(() => {
-        return localStorage.getItem('heightTop') || 200;
+        return localStorage.getItem('heightTop') || 35;
     });
     const [heightBottom, setHeightBottom] = useState(() => {
-        return localStorage.getItem('heightBottom') || 200;
+        return localStorage.getItem('heightBottom') || 40;
     });
     const refTop = useRef(null);
     const refBottom = useRef(null);
@@ -109,14 +111,17 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
     return (
         <div
             className={'product ' + className}
-            style={{ background: `url(${product.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            // style={{ background: `url(${product.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+            >
 
             <div
                 className='product_info'>
                 <div className='left_block_content'>
                     <div className='product_name_weight'>
                         <div className='product_header'>
-                            <div className={'title'}>{product.title}</div>
+                            {/* <div className={'title'}>{product.title}</div> */}
+                            <div className={'title'}>Активные кнопки</div>
+
                         </div>
                         <div className={'product_info_price_wrap'}>
 
@@ -130,7 +135,7 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
                                     >
                                         {/* <p>locationId: <b>{avOption.locationId}</b></p> */}
                                         <p className='product_price_item_weight'>{avOption.weight}g</p>
-                                        <p className='product_price_item_price'>{avOption.price}e</p>
+                                        <p className='product_price_item_price'>{avOption.price}€</p>
                                         <ln></ln>
                                     </div>))
                             }
@@ -139,15 +144,15 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
                     </div>
                     <div className={'product_pay_wrap'}>
                         <div className={'product_pay_item'}>
-                            <button className={'product_pay_var'} >Google Pay</button>
+                            <button className={'product_pay_var'} > <p> Bitcoin Wallet</p></button>
                         </div>
                         <div className={'product_pay_item'}>
-                            <button className={'product_pay_var'}>Telegram Wallet</button>
-                            <button className={'product_pay_pacifier'}> <img src="/icon/pacifier.png" alt="" /> </button>
+                            <button className={'product_pay_var'}> <p>Telegram Wallet</p> </button>
+                            {/* <button className={'product_pay_pacifier'}> <img src="/icon/pacifier.png" alt="" /> </button> */}
                         </div>
                         <div className={'product_pay_item'}>
-                            <button className={'product_pay_var'}>Bitcoin</button>
-                            <button className={'product_pay_pacifier'}> <img src="/icon/pacifier.png" alt="" /> </button>
+                            <button className={'product_pay_var'}> <p>Visa MasterCard</p></button>
+                            {/* <button className={'product_pay_pacifier'}> <img src="/icon/pacifier.png" alt="" /> </button> */}
                         </div>
                     </div>
                 </div>
