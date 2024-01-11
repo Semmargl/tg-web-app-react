@@ -12,7 +12,7 @@ const getProductAvailable = ({id}) => {
     return availableProducts.find(({productId}) => productId === id )?.available
 }
 
-const productsWeed = products.map((product) => {
+const productsdwelling = products.map((product) => {
     return {
         ...product,
         available: getProductAvailable(product)
@@ -20,7 +20,7 @@ const productsWeed = products.map((product) => {
 })
 
 
-// const productsWeed = availableProducts.map((product) => {
+// const productsdwelling = availableProducts.map((product) => {
 //     return product.available.map((el)=> ({
 //         ...el,
 //         ...products.find(({id})=> id === product.productId),
@@ -118,7 +118,7 @@ const ProductList = () => {
 
     return (
         <div className={'list'}>
-            {productsWeed.map(item => (
+            {productsdwelling.map(item => (
                 <ProductItem
                     product={item}
                     onAdd={onAdd}

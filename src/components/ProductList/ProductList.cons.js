@@ -1,101 +1,45 @@
 export const products = [{
     id: 1, 
-    title: 'Girl Scout Cookies', 
-    short: 'Творческий хай с ароматом сладкого печенья',
+    title: 'Apartment complex', 
+    short: 'Apartment complex ',
     description: `
-        Индор (Indoor)
-        ТГК: до 20%
-        Сатива 40% / Индика 60%
-        Вкус: печенье, сладкий, земляной
-        Эффекты: социальность, расслабленность, счастье
+    The units in the apartment complex are equipped with air conditioning, a seating area, a flat-screen TV with streaming services, a kitchen, a dining area and a private bathroom with a hair dryer, a bidet and a shower. A microwave, a fridge and stovetop are also featured, as well as a kettle. At the apartment complex, the units come with bed linen and towels.
+
+    A minimarket is available at the apartment.
     `,
-    img: 'https://2fast4buds.com/static/products/77/m_blc_girl_scout_cookies_black_1690109718.jpg'
+    img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/295389548.jpg?k=c86d5722a3538eb38774260f08ca9c647303a0ac53c8535859ca62db1845f0da&o=&hp=1'
 },{
     id: 2, 
-    title: 'Mexican Airlines', 
-    short: 'Сативный полет с цитрусовым оттенком',
+    title: 'Apartment complex', 
+    short: 'Apartment complex ',
     description: `
-        Индор (Indoor)
-        ТГК: до 19%
-        Сатива 65% / Индика 35%
-        Вкус: лимон, фруктовый, сосна
-        Эффекты: энергия, креативность, бодрость
+    The units in the apartment complex are equipped with air conditioning, a seating area, a flat-screen TV with streaming services, a kitchen, a dining area and a private bathroom with a hair dryer, a bidet and a shower. A microwave, a fridge and stovetop are also featured, as well as a kettle. At the apartment complex, the units come with bed linen and towels.
+
+    A minimarket is available at the apartment.
     `,
-    img: 'https://2fast4buds.com/static/products/69/m_blc_mexican_airlines_black_1690109427.jpg'
+    img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/433152596.jpg?k=0b866882de28f8980f7bd7ab618468ecd07b5e0e5298009f07177450209849d5&o=&hp=1'
 },{
     id: 3, 
-    title: 'White Widow', 
-    short: 'Олдскульная легенда с гибридным эффектом',
+    title: 'Apartment complex', 
+    short: 'Apartment complex ',
     description: `
-        Индор (Indoor)
-        ТГК: до 20%
-        Сатива 30% / Индика 70%
-        Вкус: мускус, пряный, земляной
-        Эффекты: стимуляция с плавным переходом в релакс
+    The units in the apartment complex are equipped with air conditioning, a seating area, a flat-screen TV with streaming services, a kitchen, a dining area and a private bathroom with a hair dryer, a bidet and a shower. A microwave, a fridge and stovetop are also featured, as well as a kettle. At the apartment complex, the units come with bed linen and towels.
+
+    A minimarket is available at the apartment.
     `,
-    img: 'https://2fast4buds.com/static/products/122/m_blc_original_auto_white_widow_black_1690110426.jpg'
+    img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/219699462.jpg?k=6785cc45b9e833dfa077e744d0897e3f518157cd085efb776efdc4540b673737&o=&hp=1'
 },{
     id: 4, 
-    title: 'Gorilla Glue', 
-    short: ' Максимум ТГК с тяжелой эйфорией',
+    title: 'Apartment complex', 
+    short: 'Apartment complex ',
     description: `
-        Индор (Indoor) 
-        ТГК: до 24%
-        Сатива 65% / Индика 35%
-        Вкус: цитрус, сосна, пикантный
-        Эффекты: позитив, эйфория
+    The units in the apartment complex are equipped with air conditioning, a seating area, a flat-screen TV with streaming services, a kitchen, a dining area and a private bathroom with a hair dryer, a bidet and a shower. A microwave, a fridge and stovetop are also featured, as well as a kettle. At the apartment complex, the units come with bed linen and towels.
+
+    A minimarket is available at the apartment.
     `,
-    img: 'https://2fast4buds.com/static/products/81/m_blc_gorilla_glue_black_1690109789.jpg'
+    img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/433152277.jpg?k=34a53a81742ceed916d5c4d017b24a3efa7abd6fd9473168c68bbb03e62ff97d&o=&hp=1'
 }];
-export const weedProducts = [{
-    id: 1, 
-    title: 'Girl Scout Cookies', 
-    short: 'Творческий хай с ароматом сладкого печенья',
-    description: `
-        Индор (Indoor)
-        ТГК: до 20%
-        Сатива 40% / Индика 60%
-        Вкус: печенье, сладкий, земляной
-        Эффекты: социальность, расслабленность, счастье
-    `,
-    img: 'https://2fast4buds.com/static/products/77/m_blc_girl_scout_cookies_black_1690109718.jpg'
-},{
-    id: 2, 
-    title: 'Mexican Airlines', 
-    short: 'Сативный полет с цитрусовым оттенком',
-    description: `
-        Индор (Indoor)
-        ТГК: до 19%
-        Сатива 65% / Индика 35%
-        Вкус: лимон, фруктовый, сосна
-        Эффекты: энергия, креативность, бодрость
-    `,
-    img: 'https://2fast4buds.com/static/products/69/m_blc_mexican_airlines_black_1690109427.jpg'
-},{
-    id: 3, 
-    title: 'White Widow', 
-    short: 'Олдскульная легенда с гибридным эффектом',
-    description: `
-        Индор (Indoor)
-        ТГК: до 20%
-        Сатива 30% / Индика 70%
-        Вкус: мускус, пряный, земляной
-        Эффекты: стимуляция с плавным переходом в релакс
-    `,
-    img: 'https://2fast4buds.com/static/products/122/m_blc_original_auto_white_widow_black_1690110426.jpg'
-},{
-    id: 4, 
-    title: 'Gorilla Glue', 
-    short: ' Максимум ТГК с тяжелой эйфорией',
-    description: `
-        Индор (Indoor) 
-        ТГК: до 24%
-        Сатива 65% / Индика 35%
-        Вкус: цитрус, сосна, пикантный
-        Эффекты: позитив, эйфория
-    `,
-    img: 'https://2fast4buds.com/static/products/81/m_blc_gorilla_glue_black_1690109789.jpg'
-}];
+
 
 export const availableProducts = [
     {
@@ -104,17 +48,17 @@ export const availableProducts = [
     available: [{
         locationId: 1,
         price: 25,
-        weight: 5
+        days: 5
     },
     {
         locationId: 1,
         price: 40,
-        weight: 10
+        days: 10
     },
     {
         locationId: 2,
         price: 25,
-        weight: 5
+        days: 5
     }]
 },
 {
@@ -123,17 +67,17 @@ export const availableProducts = [
     available: [{
         locationId: 3,
         price: 25,
-        weight: 5
+        days: 5
     },
     {
         locationId: 2,
         price: 40,
-        weight: 10
+        days: 10
     },
     {
         locationId: 1,
         price: 25,
-        weight: 5
+        days: 5
     }]
 }]
 

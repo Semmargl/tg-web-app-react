@@ -1,6 +1,6 @@
-export const productsMushrooms = [{
+export const productsrooms = [{
     id: 1, 
-    title: 'Mushroom Girl Scout Cookies', 
+    title: 'room Girl Scout Cookies', 
     short: 'Творческий хай с ароматом сладкого печенья',
     description: `
         Индор (Indoor)
@@ -12,7 +12,7 @@ export const productsMushrooms = [{
     img: 'https://2fast4buds.com/static/products/77/m_blc_girl_scout_cookies_black_1690109718.jpg'
 },{
     id: 2, 
-    title: 'Mushroom Mexican Airlines', 
+    title: 'room Mexican Airlines', 
     short: 'Сативный полет с цитрусовым оттенком',
     description: `
         Индор (Indoor)
@@ -24,7 +24,7 @@ export const productsMushrooms = [{
     img: 'https://2fast4buds.com/static/products/69/m_blc_mexican_airlines_black_1690109427.jpg'
 },{
     id: 3, 
-    title: 'Mushroom White Widow', 
+    title: 'room White Widow', 
     short: 'Олдскульная легенда с гибридным эффектом',
     description: `
         Индор (Indoor)
@@ -36,7 +36,7 @@ export const productsMushrooms = [{
     img: 'https://2fast4buds.com/static/products/122/m_blc_original_auto_white_widow_black_1690110426.jpg'
 },{
     id: 4, 
-    title: 'Mushroom Gorilla Glue', 
+    title: 'room Gorilla Glue', 
     short: ' Максимум ТГК с тяжелой эйфорией',
     description: `
         Индор (Indoor) 
@@ -48,7 +48,7 @@ export const productsMushrooms = [{
     img: 'https://2fast4buds.com/static/products/81/m_blc_gorilla_glue_black_1690109789.jpg'
 },{
     id: 5, 
-    title: 'Mushroom 222', 
+    title: 'room 222', 
     short: ' Максимум 333',
     description: `
         Индор (Indoor) 
@@ -61,7 +61,7 @@ export const productsMushrooms = [{
 }
 ];
 
-export const availableProductsMushrooms = [{
+export const availableProductsrooms = [{
     id: 1,
     productId: 1,
     available: [{

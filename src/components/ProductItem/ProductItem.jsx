@@ -10,14 +10,14 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
     const availableOptions = product.available?.filter(avOption => avOption.locationId === selectedDistrict);
     // const [heightTop, setHeightTop] = useState(200);
     // const [heightBottom, setHeightBottom] = useState(200);
-    // const [heightTop, setHeightTop] = useState(35);
-    // const [heightBottom, setHeightBottom] = useState(40);
-    const [heightTop, setHeightTop] = useState(() => {
-        return localStorage.getItem('heightTop') || 35;
-    });
-    const [heightBottom, setHeightBottom] = useState(() => {
-        return localStorage.getItem('heightBottom') || 40;
-    });
+    const [heightTop, setHeightTop] = useState(35);
+    const [heightBottom, setHeightBottom] = useState(55);
+    // const [heightTop, setHeightTop] = useState(() => {
+    //     return localStorage.getItem('heightTop') || 35;
+    // });
+    // const [heightBottom, setHeightBottom] = useState(() => {
+    //     return localStorage.getItem('heightBottom') || 40;
+    // });
     const refTop = useRef(null);
     const refBottom = useRef(null);
 
@@ -134,7 +134,7 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
                                         onClick={() => chooseWeightHandler(avOption)}
                                     >
                                         {/* <p>locationId: <b>{avOption.locationId}</b></p> */}
-                                        <p className='product_price_item_weight'>{avOption.weight}g</p>
+                                        <p className='product_price_item_weight'>{avOption.days} day</p>
                                         <p className='product_price_item_price'>{avOption.price}€</p>
                                         <ln></ln>
                                     </div>))

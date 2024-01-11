@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { availableProducts, products } from './ProductList.cons';
 import { Carousel } from 'antd';
-import { GiMushroomGills } from "react-icons/gi";
-import { FaCannabis } from "react-icons/fa";
+import { FaHouseChimney } from "react-icons/fa6";
+import { MdBedroomParent } from "react-icons/md";
 
 
 const getProductAvailable = ({ id }) => {
@@ -67,21 +67,14 @@ const ProductList = ({ products, productType, availableProducts, selectedDistric
         };
     
 
-    // const productIcons = allProductIds.map((productId, index) => (
-    //     <div
-    //         key={productId}
-    //         className={`icon_product_qrt ${isProductAvailable(productId) ? 'icon_product_qrt_wrap_available' : 'icon_product_qrt_wrap_unavailable'} ${index === activeSlideIndex ? 'icon_product_qrt_active-icon' : ''}`}
-    //     >
-    //         {productType === 'weed' ? <FaCannabis /> : <GiMushroomGills />}
-    //     </div>
-    // ));
+
     const productIcons = allProductIds.map((productId, index) => (
         <div
             ref={(el) => setIconRef(el, index)}
             key={productId}
             className={`icon_product_qrt ${isProductAvailable(productId) ? 'icon_product_qrt_wrap_available' : 'icon_product_qrt_wrap_unavailable'} ${index === activeSlideIndex ? 'icon_product_qrt_active-icon' : ''}`}
         >
-            {productType === 'weed' ? <FaCannabis /> : <GiMushroomGills />}
+            {productType === 'dwelling' ? <FaHouseChimney /> : <MdBedroomParent />}
         </div>
     ));
 
