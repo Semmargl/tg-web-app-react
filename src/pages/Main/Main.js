@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Carousel } from 'antd';
 import {products, availableProducts} from '../../components/ProductList/ProductList.cons'
-import {productsRooms, availableproductsRooms} from '../../components/ProductList/ProductsListRooms.cons'
+import {productsRooms, availableProductsRooms} from '../../components/ProductList/ProductsListRooms.cons'
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Flex, Tooltip } from 'antd';
 import { FaHouseChimney } from "react-icons/fa6";
@@ -53,7 +53,7 @@ const Main = () => {
                                 <div className='filter_by_location'>
                                     {/* <Map availableProducts={availableProducts}/> */}
                                     <Map
-                                    availableProducts={activeTab === 'dwelling' ? availableProducts : availableProductsrooms} 
+                                    availableProducts={activeTab === 'dwelling' ? availableProducts : availableProductsRooms} 
                                     selectedDistrict={selectedDistrict}
                                     setSelectedDistrict={setSelectedDistrict}/>
                                 </div>
@@ -71,7 +71,7 @@ const Main = () => {
                         <ProductList 
                         products={activeTab === 'dwelling' ? products : productsRooms} 
                         productType={activeTab} 
-                        availableProducts={activeTab === 'dwelling' ? availableProducts : availableProductsrooms}
+                        availableProducts={activeTab === 'dwelling' ? availableProducts : availableProductsRooms}
                         selectedDistrict={selectedDistrict}
                         setSelectedDistrict={setSelectedDistrict}
                         />

@@ -10,8 +10,8 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
     const availableOptions = product.available?.filter(avOption => avOption.locationId === selectedDistrict);
     // const [heightTop, setHeightTop] = useState(200);
     // const [heightBottom, setHeightBottom] = useState(200);
-    const [heightTop, setHeightTop] = useState(35);
-    const [heightBottom, setHeightBottom] = useState(55);
+    const [heightTop, setHeightTop] = useState(25);
+    const [heightBottom, setHeightBottom] = useState(100);
     // const [heightTop, setHeightTop] = useState(() => {
     //     return localStorage.getItem('heightTop') || 35;
     // });
@@ -159,22 +159,26 @@ const ProductItem = ({ product, className, onAdd, selectedDistrict, setSelectedD
                 <div className='right_block_component'>
                     <div
                         className={'description description_top'}
-                        style={{ height: `${heightTop}px` }}
+                        style={{ height: `${heightTop}%` }}
                     >
                         {product.short}
                         <div
                             className="resize-handle-top"
-                            onMouseDown={handleDragTop}
-                        ><span></span></div>
+                            // onMouseDown={handleDragTop}
+                        >
+                            {/* <span></span> */}
+                            </div>
                     </div>
                     <div
                         className={'description description_bottom'}
-                        style={{ height: `${heightBottom}px` }}
+                        style={{ height: `${heightBottom}%` }}
                     >
                         <div
                             className="resize-handle-bottom"
-                            onMouseDown={handleDragBottom}
-                        ><span></span></div>
+                            // onMouseDown={handleDragBottom}
+                        >
+                            {/* <span></span> */}
+                            </div>
                         {product.description}
                     </div>
                 </div>

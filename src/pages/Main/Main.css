@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     justify-content: center; */
     position: relative;
+    height: 100%;
     
 }
 
@@ -43,6 +44,19 @@
     width: 100%;
 }
 
+.products_view{
+    height: 100%;
+}
+
+
+.products_view .list .ant-carousel, .slick-slider, .slick-list{
+    height: 100%;
+}
+.products_view .list .ant-carousel .slick-slider .slick-dots{
+    position: relative;
+    /* background: red; */
+    z-index: 1000;
+}
 
 .tabs{
     display: flex;
